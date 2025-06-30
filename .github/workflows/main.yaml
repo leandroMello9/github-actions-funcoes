@@ -1,0 +1,22 @@
+name: Usando Funcões
+on:
+    workflow_dispatch:
+        inputs:
+          nome:
+            description: 'Nome do usuário'
+            required: true
+            default: 'Mundo'
+jobs:
+    teste:
+        permissions: write-all
+        runs-on: ubuntu-latest
+        steps:
+            - name: Função Contains
+              run: |
+               echo "${{ contains(inputs.nome, github.actor) }}"
+            - name: Função Format
+              run: |
+                echo "${{ format('Olá, {0}!', inputs.nome) }}"
+            - name: Função Json
+              run: |
+                echo "${{ toJson(github) }}"
